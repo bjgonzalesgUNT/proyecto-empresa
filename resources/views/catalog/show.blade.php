@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-Catalogo
+Ver producto
 @endsection
 
 @section('content')
-{{ $id }}
+<div class="bg-fuchsia-400 p-3">
+  Producto #{{ $id }}
+</div>
 @endsection

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShowItemRequest;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CatalogController extends Controller
 {
@@ -11,12 +13,12 @@ class CatalogController extends Controller
         return view("catalog.index");
     }
 
-    public function create()
+    public function create(): View
     {
         return view("catalog.create");
     }
 
-    public function show($id)
+    public function show(string $id): View
     {
         return view("catalog.show", ["id" => $id]);
     }

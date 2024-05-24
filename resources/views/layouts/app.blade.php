@@ -16,7 +16,9 @@
     <div class="w-full">
       <h1 class="text-xl">@yield('title')</h1>
     </div>
-    <div></div>
+    <div>
+      @yield('content')
+    </div>
   </main>
 
   @include('partials.navbar')
