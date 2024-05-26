@@ -5,5 +5,8 @@
 @endsection
 
 @section("content")
-    
+    <div>
+        {{ "parametro opcional: " }}
+        <span>{{ $id }}</span>
+    </div>
 @endsection

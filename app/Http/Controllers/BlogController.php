@@ -8,9 +8,16 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('blogs.index');
+
+        $request->validate([
+            'id' => 'numeric',
+        ]);
+
+        $id = $request->id;
+
+        return view('blogs.index', ['id' => $id]);
     }
 
     public function view(string $id)

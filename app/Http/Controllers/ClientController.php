@@ -7,8 +7,14 @@ use Illuminate\View\View;
 
 class ClientController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view("clients.index");
+        $request->validate([
+            'name' => 'string|regex:/^[A-Za-z]+$/u'
+        ]);
+
+        $name = $request->get('name');
+
+        return view("clients.index", ['name' => $name]);
     }
 }
