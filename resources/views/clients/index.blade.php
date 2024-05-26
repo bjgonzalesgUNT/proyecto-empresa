@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("title")
-    home
+    clientes
 @endsection
 
 @section("content")

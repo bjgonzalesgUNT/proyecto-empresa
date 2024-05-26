@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("title")
-    home
+    ver blog #{{ $id }}
 @endsection
 
 @section("content")
