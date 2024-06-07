@@ -1,15 +1,14 @@
-version: '3.0'
-
 services:
-  postgres-nestjs-db:
-    image: postgres:16.1
-    container_name: laravel-empresa
+  proyecto-empresa:
+    image: mysql:8.4.0
+    container_name: proyecto-empresa
     restart: always
     environment:
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
+      # MYSQL_USER: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
     volumes:
-      - ./postgres:/var/lib/postgres/data
+      - ./mysql:/var/lib/mysql
     ports:
       - ${DB_PORT}:${DB_PORT}
