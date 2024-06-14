@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string("name", 50)->index()->nullable();
             $table->string("surname", 50)->index()->nullable();
             $table->string("address", 100)->nullable();
-            $table->date('birth_date');
+            $table->date('birthday');
             $table->integer('age');
             $table->decimal('salary', 6, 2);
-            $table->string('rdn', 50);
+            $table->string('rdn', 50)->nullable();
             $table->char('status', 1)->default('1');
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();
