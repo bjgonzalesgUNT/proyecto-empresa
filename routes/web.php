@@ -27,9 +27,7 @@ Route::get('/services/{name}', [ServiceController::class, 'view'])->name('servic
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 //* CLIENTS
-Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
-Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
-Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+Route::resource('/clients', ClientController::class);
 
 //* BLOGS
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');

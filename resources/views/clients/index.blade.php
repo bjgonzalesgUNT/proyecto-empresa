@@ -5,39 +5,60 @@
 @endsection
 
 @section('content')
-    <div class="w-full mb-4">
-        <a href="{{ route('clients.create') }}" class="bg-indigo-800 text-white p-2 rounded-md">
+    <div class="w-full flex justify-end items-center">
+        <a href="{{ route('clients.create') }}"
+            class="p-3 rounded-md shadow-md bg-indigo-800 hover:ring-1 hover:bg-indigo-950 hover:ring-indigo-300 text-white">
             Crear cliente
         </a>
     </div>
-    <div class="w-full mb-4">
-        <div>
-            <h2 class="text-2xl font-bold">Listado de clientes</h2>
-            <table class="mt-4">
-                <thead>
+    <div class="w-full px-40">
+
+        <h2 class="text-2xl font-bold">Listado de clientes</h2>
+        <table class="mt-4 table-fixe w-full">
+            <thead>
+                <tr>
+                    @include('components.table.table-th', ['value' => 'apellido'])
+                    @include('components.table.table-th', ['value' => 'nombre'])
+                    @include('components.table.table-th', ['value' => 'direccion'])
+                    @include('components.table.table-th', ['value' => 'fecha nacimiento'])
+                    @include('components.table.table-th', ['value' => 'edad'])
+                    @include('components.table.table-th', ['value' => 'sueldo'])
+                    @include('components.table.table-th', ['value' => 'estado'])
+                    @include('components.table.table-th', ['value' => 'acciones'])
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($people as $person)
                     <tr>
-                        <th class="px-4 py-2 border-y-2 border-black">Apellido</th>
-                        <th class="px-4 py-2 border-y-2 border-black">Nombre</th>
-                        <th class="px-4 py-2 border-y-2 border-black">Direccion</th>
-                        <th class="px-4 py-2 border-y-2 border-black">Fecha Nacimiento</th>
-                        <th class="px-4 py-2 border-y-2 border-black">Edad</th>
-                        <th class="px-4 py-2 border-y-2 border-black">Sueldo</th>
-                        <th class="px-4 py-2 border-y-2 border-black">Estado</th>
+                        @include('components.table.table-td', ['value' => $person->surname])
+                        @include('components.table.table-td', ['value' => $person->name])
+                        @include('components.table.table-td', ['value' => $person->address])
+                        @include('components.table.table-td', ['value' => $person->birthday])
+                        @include('components.table.table-td', ['value' => $person->age])
+                        @include('components.table.table-td', ['value' => $person->salary])
+                        @include('components.table.table-td', ['value' => $person->status])
+                        @component('components.table.table-td-actions')
+                            @slot('show')
+                                @include('components.buttons.btn-show', [
+                                    'route' => 'clients.show',
+                                    'id' => $person->id,
+                                ])
+                            @endslot
+                            @slot('edit')
+                                @include('components.buttons.btn-edit', [
+                                    'route' => 'clients.edit',
+                                    'id' => $person->id,
+                                ])
+                            @endslot
+                            @slot('delete')
+                                @include('components.buttons.btn-delete', [
+                                    'route' => 'clients.destroy',
+                                    'id' => $person->id,
+                                ])
+                            @endslot
+                        @endcomponent
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($people as $person)
-                        <tr>
-                            <td class="px-4 py-2 border-y-2 border-black">{{ $person->surname }}</td>
-                            <td class="px-4 py-2 border-y-2 border-black">{{ $person->name }}</td>
-                            <td class="px-4 py-2 border-y-2 border-black">{{ $person->address }}</td>
-                            <td class="px-4 py-2 border-y-2 border-black">{{ $person->birthday }}</td>
-                            <td class="px-4 py-2 border-y-2 border-black">{{ $person->age }}</td>
-                            <td class="px-4 py-2 border-y-2 border-black">{{ $person->salary }}</td>
-                            <td class="px-4 py-2 border-y-2 border-black">{{ $person->status }}</td>
-                        </tr>
-                    @endforeach
-            </table>
-        </div>
+                @endforeach
+        </table>
     </div>
 @endsection
