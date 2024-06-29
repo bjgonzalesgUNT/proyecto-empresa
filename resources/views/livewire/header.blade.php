@@ -49,7 +49,7 @@
             
         @endcomponent
 
-        @component("components.navbar-item", ["title" => "contacto", "ref" => "contact.index"])
+        @component("components.navbar-item", ["title" => "contacto", "ref" => "contacts.index"])
             
         @endcomponent
     </div>

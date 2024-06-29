@@ -34,4 +34,4 @@ Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{id}', [BlogController::class, 'view'])->name('blogs.view');
 
 //* CONTACT
-Route::get('/contact', ContactController::class)->name('contact.index');
+Route::resource('/contacts', ContactController::class);
