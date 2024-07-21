@@ -60,5 +60,5 @@
 </div>
 @isset($btnTitle)
     <input type="submit" value="{{ $btnTitle }}"
-        class="w-full col-span-2 bg-indigo-800 text-white p-2 rounded-md disabled:cursor-not-allowed bg-slate-200 cursor-pointer hover:bg-indigo-950 transition-colors duration-150 uppercase">
+        class="w-full col-span-2 bg-indigo-800 text-white p-2 rounded-md disabled:cursor-not-allowed cursor-pointer hover:bg-indigo-950 transition-colors duration-150 uppercase">
 @endisset
