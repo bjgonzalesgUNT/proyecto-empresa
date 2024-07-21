@@ -10,13 +10,14 @@ class ClientController extends Controller
 {
     public function index(): View
     {
-        $people = Person::all();
-        return view("clients.index", ['people' => $people]);
+        $people = Person::paginate(10);
+        return view("clients.index", compact("people"));
     }
 
     public function create(): View
     {
-        return view("clients.create", ['person' => new Person()]);
+        $person = new Person();
+        return view("clients.create", compact("person"));
     }
 
     public function store(PersonRequest $request)

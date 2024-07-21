@@ -7,15 +7,8 @@ use Illuminate\View\View;
 
 class ProjectController extends Controller
 {
-    public function index(Request $request): View
+    public function __invoke(): View
     {
-
-        $request->validate([
-            'name' => 'string|regex:/^[A-Za-z]+$/u'
-        ]);
-
-        $name = $request->get('name');
-
-        return view("projects.index", ['name' => $name]);
+        return view("projects.index");
     }
 }

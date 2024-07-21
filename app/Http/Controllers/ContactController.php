@@ -16,7 +16,7 @@ class ContactController extends Controller
      */
     public function index(): View
     {
-        $contacts = Contact::all();
+        $contacts = Contact::paginate(10);
         return view('contacts.index', compact('contacts'));
     }
 
@@ -29,6 +29,7 @@ class ContactController extends Controller
     public function store(ContactRequest $request)
     {
         Contact::create($request->validated());
-        return new MessageReceived($request->validated());
+        Mail::to($request->email)->send(new MessageReceived($request->all()));
+        return redirect()->route('contacts.index')->with('success', 'Message sent successfully');
     }
 }
