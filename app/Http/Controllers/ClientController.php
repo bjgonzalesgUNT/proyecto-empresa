@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonRequest;
 use App\Models\Person;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ClientController extends Controller
@@ -22,7 +23,13 @@ class ClientController extends Controller
 
     public function store(PersonRequest $request)
     {
-        Person::create($request->validated());
+        $newPerson = new Person();
+        $newPerson->fill($request->validated());
+
+        $newPerson->image = $request->file("image")->store("images", 'public');
+
+        $newPerson->save();
+
         return redirect()->route("clients.index");
     }
 
@@ -38,12 +45,21 @@ class ClientController extends Controller
 
     public function update(PersonRequest $request, Person $client)
     {
-        $client->update($request->validated());
+        $client->fill($request->validated());
+
+        if ($request->hasFile("image")) {
+            Storage::delete($client->image);
+            $client->image = $request->file("image")->store("images", 'public');
+        }
+
+        $client->save();
+
         return redirect()->route("clients.index");
     }
 
     public function destroy(Person $client)
     {
+        Storage::delete($client->image);
         $client->delete();
         return redirect()->route("clients.index");
     }

@@ -19,6 +19,7 @@ class Person extends Model
         "age",
         "salary",
         "status",
+        "image",
     ];
 
     protected $dates = [

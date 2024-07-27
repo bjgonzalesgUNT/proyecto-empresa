@@ -7,7 +7,7 @@
     <div class="py-12 px-40">
         <div class="w-full flex justify-center">
             <form method="POST" action="{{ route('clients.update', $person) }}"
-                class="bg-gray-200 p-5 rounded-md shadow-md flex flex-col gap-4 w-1/2">
+                class="bg-white/50 p-5 rounded-md shadow-md flex flex-col gap-4 w-1/2" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 @include('clients.partials.form-fields', ['btnTitle' => 'Actualizar', 'disabled' => false])

@@ -30,6 +30,12 @@ class PersonRequest extends FormRequest
             // "gender" => "required",
             "salary" => "required|numeric",
             "status" => "required|in:1,0",
+            "image" => [
+                $this->route('clients.create') ? "required" : 'nullable',
+                "image",
+                "mimes:jpeg,png,jpg,gif,svg",
+                "max:2048"
+            ]
         ];
     }
 }
