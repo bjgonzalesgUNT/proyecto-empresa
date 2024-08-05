@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ClientSaved;
 use App\Http\Requests\PersonRequest;
 use App\Models\Person;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class ClientController extends Controller
 {
@@ -30,6 +33,14 @@ class ClientController extends Controller
 
         $newPerson->save();
 
+        $manager = new ImageManager(new Driver());
+
+        $image = $manager->read(public_path('storage/' . $newPerson->image))->scale(width: 600, height: 600)->colorize(0, 0, 0)->encode();
+
+        Storage::put($newPerson->image, (string) $image);
+
+        ClientSaved::dispatch($newPerson);
+
         return redirect()->route("clients.index");
     }
 
@@ -50,6 +61,14 @@ class ClientController extends Controller
         if ($request->hasFile("image")) {
             Storage::delete($client->image);
             $client->image = $request->file("image")->store("images", 'public');
+
+            $manager = new ImageManager(new Driver());
+
+            $image = $manager->read(public_path('storage/' . $client->image))->scale(width: 600, height: 600)->colorize(0, 0, 0)->encode();
+
+            Storage::put($client->image, (string) $image);
+
+            ClientSaved::dispatch($client);
         }
 
         $client->save();
