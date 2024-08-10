@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends("layouts.app")
 
-@section('title')
-Crear un catalogo
+@section("title")
+    Crear un catalogo
 @endsection
 
-@section('content')
-
+@section("content")
+    
 @endsection

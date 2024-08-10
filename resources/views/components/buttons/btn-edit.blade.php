@@ -1,3 +1,6 @@
-<a href="{{ route($route, $id) }}" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 grid content-center">
-    @include('components.material-icons', ['icon' => 'edit'])
+<a
+    href="{{ route($route, $id) }}"
+    class="grid content-center rounded-md bg-blue-500 p-2 text-white hover:bg-blue-700"
+>
+    @include("components.material-icons", ["icon" => "edit"])
 </a>

@@ -1,1 +1,3 @@
-<td class="text-center border-b border-b-gray-300 lowercase py-2">{{ $value }}</td>
+<td class="border-b border-b-gray-300 py-2 text-center lowercase">
+    {{ $value }}
+</td>

@@ -1,8 +1,9 @@
-@extends('layouts.app')
+@extends("layouts.app")
 
-@section('title')
-catalogo
+@section("title")
+    catalogo
 @endsection
 
-@section('content')
+@section("content")
+    
 @endsection
